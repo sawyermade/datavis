@@ -1,0 +1,16 @@
+Pros:
+1. Uses VR in a very novel way
+
+2. Helps increase speed and quality of neuron tracing 
+
+3. Works with oculus and vive
+
+Cons:
+1. Doesnt automate tracing completely
+
+2. Slight learning curve for researchers to use the system
+
+3. Low resolution due to current available VR headsets
+
+Summary:
+Neuroscientists are currently trying to map the human brain. In doing so, they have encountered many problems. The largest problem they have to solve is the sheer volume of neurons in the human brain that have to have all their connections mapped to the others. This is a daunting process and has only been completed on one living organism at the moment. The Caenorhabditis elegans is the only one with 302 neurons. This is a very low number and a mammal as small as a mouse is magnitudes more of a challenge, with NHPs (Non Human Primates) it is even more complex. NHPs are the closest similar mammal to homosapeans and being able to map their neurons would eventually lead to being able to map a humans brain. Currently researchers are trying to map a mouse's brain. The reason it has been so difficult is because the neural connections have to be traced by hand. The current method most researchers use is in 2 dimensions and is hard to visualize. With VR, you can do the tracing in 3 dimensions which apparently makes it much easier to trace these connections. Theres a slight learning curve on how to use the control schemes they implemented but it doesnt seem too bad (10 minutes they say). The tracing and navigation software has lots of cool features including an undo type function, which is neat. They also use haptic feedback using the controller and wand rumble features. The authors claim that, on average, users are as accurate and faster at neuron tracing over using the current industry standard tool and can trace orders of magnitude larger datasets with their integrated paging system. Although i dont know much about this area of research, it seemed like a very interesting project/software use of VR.
