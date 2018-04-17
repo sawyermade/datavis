@@ -6,7 +6,7 @@ class ForceDirectedLayout extends Frame {
   float RESTING_LENGTH = 20.0f;   // update this value 10.0f - 20.0f
   float SPRING_SCALE   = 1.5f; // update this value 0.0075f
   float REPULSE_SCALE  = 30.0f;  // update this value 400.0f
-  float TIME_STEP      = 0.5f;    // probably don't need to update this 0.5f
+  float TIME_STEP      = 0.25f;    // probably don't need to update this 0.5f
   float xlow, xhigh, ylow, yhigh;
   float multiplier = .50, m = 1 * multiplier, minVertDiam = 11;
   boolean locked = false;
@@ -144,8 +144,7 @@ class ForceDirectedLayout extends Frame {
         locked = true;
         break;
       }
-    }
-    
+    } 
   }
   
   //updates dragged nodes position

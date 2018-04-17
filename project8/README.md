@@ -1,5 +1,5 @@
 # Project 8 Daniel Sawyer Force Directed Graph
-TO CHANGE STRUCTURE ORIENTATION OR IF FOR SOME REASON ALL NODES DISAPPEAR(due to bug with random() func, happens once every 100+ runs right at the beginning), RESTART AND CHOOSE DATASET AGAIN.
+
 ## Colors & Size
 1. Colors based off group number, listed in legend on bottom of frame.
 2. Diameter of node is also based off group number, increases with group number.
