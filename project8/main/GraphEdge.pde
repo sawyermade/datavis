@@ -32,4 +32,11 @@ class GraphEdge {
   void drawEdge(){
     line(v0.pos.x, v0.pos.y, v1.pos.x, v1.pos.y);
   }
+  void drawEdgeHL(){
+    strokeWeight(2.5);
+    stroke(255, 0, 0);
+    fill(255, 0, 0);
+    line(v0.pos.x, v0.pos.y, v1.pos.x, v1.pos.y);
+    strokeWeight(1);
+  }
 }

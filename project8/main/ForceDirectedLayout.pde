@@ -6,7 +6,7 @@ class ForceDirectedLayout extends Frame {
   float RESTING_LENGTH = 20.0f;   // update this value 10.0f - 20.0f
   float SPRING_SCALE   = 1.5f; // update this value 0.0075f
   float REPULSE_SCALE  = 30.0f;  // update this value 400.0f
-  float TIME_STEP      = 0.25f;    // probably don't need to update this 0.5f
+  float TIME_STEP      = 0.30f;    // probably don't need to update this 0.5f
   float xlow, xhigh, ylow, yhigh;
   float multiplier = .50, m = 1 * multiplier, minVertDiam = 11;
   boolean locked = false;
@@ -15,9 +15,8 @@ class ForceDirectedLayout extends Frame {
   ArrayList<GraphVertex> verts;
   ArrayList<GraphEdge> edges;
 
-  // Storage for the node selected using the mouse (you 
-  // will need to set this variable and use it) 
-  GraphVertex selected = null, xl, xh, yl, yh;
+  //selected vertex for highlighting and others for wall vertices
+  GraphVertex selected, xl, xh, yl, yh;
   
   //constructor
   ForceDirectedLayout(ArrayList<GraphVertex> verts, ArrayList<GraphEdge> edges, float x, float y, float w, float h) {
@@ -28,6 +27,7 @@ class ForceDirectedLayout extends Frame {
     this.ylow = this.v0;
     this.xhigh = this.u0 + this.w;
     this.yhigh = this.v0 + this.h;
+    this.selected = null;
     this.xl = new GraphVertex(this.xlow, 0, this.m);
     this.xh = new GraphVertex(this.xhigh, 0, this.m);
     this.yl = new GraphVertex(0, this.ylow, this.m);
@@ -144,7 +144,8 @@ class ForceDirectedLayout extends Frame {
         locked = true;
         break;
       }
-    } 
+    }
+    
   }
   
   //updates dragged nodes position
@@ -186,44 +187,37 @@ class ForceDirectedLayout extends Frame {
     String title;
     
     for(GraphVertex v : verts) {
-      if(v != null) {
-        if(v.mouseInside2()) {
-          textAlign(CENTER);
-          textSize(18);
-          title = v.id + ", " + String.valueOf(v.group);
-          bw = textWidth(title) + 4;
-          bh = textAscent() + textDescent() + 1;
-          mx = (float)mouseX;
-          my = (float)mouseY;
-          mx -= bw/2.0;
-          my -= bh*1.25;
-          this.outEdgeHL(v);
-          strokeWeight(2.5);
-          v.highLight();
-          strokeWeight(1);
-          stroke(0);
-          fill(255);
-          rect(mx, my, bw, bh*0.90);
-          fill(0);
-          text(title, mx + bw/2.0, my + bh*0.7);
-          break;
-        }
+      if(v.mouseInside2()) {
+        textAlign(CENTER);
+        textSize(18);
+        title = v.id + ", " + String.valueOf(v.group);
+        bw = textWidth(title) + 4;
+        bh = textAscent() + textDescent() + 1;
+        mx = (float)mouseX;
+        my = (float)mouseY;
+        mx -= bw/2.0;
+        my -= bh*1.25;
+        this.outEdgeHL(v);
+        v.highLight();
+        stroke(0);
+        fill(255);
+        rect(mx, my, bw, bh*0.90);
+        fill(0);
+        text(title, mx + bw/2.0, my + bh*0.7);
+        break;
       }
     }
   }
   
   //highlight outbound edges and nodes
   void outEdgeHL(GraphVertex v){    
-    for(GraphEdge e : edges){
-      if(e.v0.id.equals(v.id)){
-        strokeWeight(2.5);
-        stroke(255, 0, 0);
-        fill(255, 0, 0);
-        e.drawEdge();
-        e.v1.highLight();
-      }
-    }
-    strokeWeight(1);
+    for(GraphEdge e : edges)
+      if(e.v0.id.equals(v.id))
+        this.outboundHL(e);
+  }
+  void outboundHL(GraphEdge e){
+    e.drawEdgeHL();
+    e.v1.highLight();
   }
 
   // The following function applies forces to all of the nodes. 

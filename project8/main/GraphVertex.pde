@@ -115,17 +115,20 @@ class GraphVertex {
   //if mouse inside
   boolean mouseInside(){
     int cb = 2;
-    if(mouseX >= pos.x - r - cb && mouseX <= pos.x + r + cb && mouseY >= pos.y - r - cb && mouseY <= pos.y + r + cb)
+    if(inside(cb))
       return true;
     else
       return false;
   }
   boolean mouseInside2(){
     int cb = 0;
-    if(mouseX >= pos.x - r - cb && mouseX <= pos.x + r + cb && mouseY >= pos.y - r - cb && mouseY <= pos.y + r + cb)
+    if(inside(cb))
       return true;
     else
       return false;
+  }
+  boolean inside(int cb){
+    return mouseX >= pos.x - r - cb && mouseX <= pos.x + r + cb && mouseY >= pos.y - r - cb && mouseY <= pos.y + r + cb;
   }
   
   //draws
@@ -136,10 +139,12 @@ class GraphVertex {
   
   //higlight
   void highLight(){
-    fill(255, 0, 0);
     stroke(100);
+    strokeWeight(2.5);
+    fill(255, 0, 0);
     ellipseMode(CENTER);
     ellipse(pos.x, pos.y, diam, diam);
+    strokeWeight(1);
   }
   
   //set color

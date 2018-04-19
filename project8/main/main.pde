@@ -23,7 +23,8 @@ void fileSelected(File selection) {
     ArrayList<GraphVertex> verts = new ArrayList<GraphVertex>();
     ArrayList<GraphEdge>   edges = new ArrayList<GraphEdge>();
 
-    // TODO: PUT CODE IN TO LOAD THE GRAPH 
+    // TODO: PUT CODE IN TO LOAD THE GRAPH
+    
     //vars to build graph
     JSONObject table = loadJSONObject(selection.getAbsolutePath()), curr;
     JSONArray nodes = table.getJSONArray("nodes"), links = table.getJSONArray("links");
@@ -50,7 +51,7 @@ void fileSelected(File selection) {
       vert2 = -1;
       
       //goes through the verts, uses them to make edges
-      for(int j = 0; j < verts.size(); j++){
+      for(int j = 0; j < verts.size() && (vert1 < 0 || vert2 < 0); j++){
         //gets id of vert[j]
         id = verts.get(j).id;
         
@@ -61,10 +62,6 @@ void fileSelected(File selection) {
         //if id == tgt, sets index of v1
         else if(tgt.equals(id))
           vert2 = j;
-        
-        //ends loop early after finding v0 & v1
-        if(vert1 > -1 && vert2 > -1)
-          break;
       }
       
       //makes new edge and adds it
@@ -83,7 +80,6 @@ void fileSelected(File selection) {
 //draw func modified
 void draw() {
   background(255);
-  
   if(start)
     myFrame.draw();
 }
